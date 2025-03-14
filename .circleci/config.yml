@@ -39,6 +39,6 @@ workflows:
       - e2e-tests:
           requires:
             - test-node
-    # - deploy:
-    #     requires:
-    #       - test-node
+      - deploy:
+          requires:
+            - e2e-tests

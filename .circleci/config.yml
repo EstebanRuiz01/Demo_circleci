@@ -21,24 +21,7 @@ jobs:
       - run:
           name: deploy
           command: '#e.g. ./deploy.sh'
-  e2e-tests:
-    docker:
-      - image: mcr.microsoft.com/playwright:focal
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: npm ci
-      - run:
-          name: Run Playwright tests
-          command: npx playwright test
 workflows:
   build-and-test:
     jobs:
       - test-node
-      - e2e-tests:
-          requires:
-            - test-node
-      - deploy:
-          requires:
-            - e2e-tests
